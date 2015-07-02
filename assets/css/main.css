@@ -1,0 +1,14 @@
+body { font-family: 'Oranienbaum', serif; font-size: 18px; }
+header { color: #DFBE83; position: absolute; height: 100%; width: 100%; min-height: 640px; background: url(/assets/img/background.body.jpg) top center no-repeat; background-size: cover; }
+header .row { margin-top: 50px; }
+header h2 { margin-top: 0; }
+header h3 { margin: 0 0 0 5px; }
+header button { margin-top: 20px; }
+li { list-style-type: none; }
+ul { padding: 0; }
+.header-hero { border: #C29C59 solid 2px; }
+.highlights {
+  color: #fff;
+}
+.uses { margin-left: 10px; }
+.workspace { position: absolute; top: 100%; padding: 50px; }
