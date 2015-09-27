@@ -1,7 +1,26 @@
+html, body {
+	height: 100%;
+}
+
 body {
-  background: url(assets/images/bg.1200.jpg) no-repeat center center fixed;
+  background: url(../img/bg.1200.jpg) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+.banner {
+	padding: 40px;
+	color: #999;
+}
+
+.hero {
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+}
+
+.scroll-test {
+	min-height: 400px;
+	background: red;
 }
