@@ -19,14 +19,19 @@
     <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/touch-icon-iphone-retina.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/touch-icon-ipad-retina.png" />
 
-  </head>
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        .gradient {
+           filter: none;
+        }
+      </style>
+    <![endif]-->
+
+    </head>
   <body>
 
     <div class="container-responsive hero">
-      <div class="row banner">
-        <div class="col-md-6 brand">Mouse and Moon Creations</div>
-        <div class="col-md-6 text-right">right column</div>
-      </div>
+      <div class="hero-overlay"></div>
     </div>
 
     <div class="container-responsive scroll-test"></div>
