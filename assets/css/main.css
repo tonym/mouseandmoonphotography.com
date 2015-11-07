@@ -2,13 +2,6 @@ html, body {
 	height: 100%;
 }
 
-body {
-  background: url(../img/bg.1200.jpg) no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
 .banner {
 	color: #999;
 	padding: 40px;
@@ -44,3 +37,13 @@ body {
 
 .scroll-test {
 	background: url(../img/bg.1200.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	height: 100%;
+	min-height: 100%;
+	position: relative;
+	top: 100%;
+	width: 100%;
+}
