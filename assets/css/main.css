@@ -6,28 +6,6 @@ body {
 	color: #fff;
 }
 
-.tagline-marquee {
-	font-family: "Dorsa", sans-serif;
-	font-size: 6em;
-	text-transform: uppercase;
-	line-height: 1em;
-}
-
-.tagline-primary-big {
-	font-family: "Goudy Bookletter 1911", serif;
-	font-size: 3em;
-}
-
-.tagline-primary-small {
-	font-family: "Goudy Bookletter 1911", serif;
-	font-size: 2em;
-}
-
-.tagline-secondary {
-	font-family: "Italianno", sans-serif;
-	font-size: 3em;
-}
-
 .banner {
 	color: #999;
 	padding: 40px;
@@ -44,6 +22,10 @@ body {
 .brand {
   font-family: 'Cherry Swash', cursive;
   font-size: 4em;
+}
+
+.divider-top span {
+	font-size: 9em;
 }
 
 .hero {
@@ -81,4 +63,26 @@ body {
 	position: relative;
 	top: 100%;
 	width: 100%;
+}
+
+.tagline-marquee {
+	font-family: "Dorsa", sans-serif;
+	font-size: 6em;
+	text-transform: uppercase;
+	line-height: 1em;
+}
+
+.tagline-primary-big {
+	font-family: "Goudy Bookletter 1911", serif;
+	font-size: 3em;
+}
+
+.tagline-primary-small {
+	font-family: "Goudy Bookletter 1911", serif;
+	font-size: 2em;
+}
+
+.tagline-secondary {
+	font-family: "Italianno", sans-serif;
+	font-size: 3em;
 }
