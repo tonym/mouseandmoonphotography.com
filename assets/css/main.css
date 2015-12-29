@@ -24,6 +24,18 @@ body {
   font-size: 4em;
 }
 
+.direction-indicator {
+	bottom: 0;
+	font-family: Webdings, fantasy;
+	font-size: 2em;
+	font-weight: 100;
+	opacity: 0.25;
+	padding: 20px 0;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
 .divider-top span {
 	font-size: 9em;
 }
@@ -32,9 +44,7 @@ body {
 	background: url(../img/backgrounds/bg.gold.jpg);
 	height: 100%;
 	min-height: 100%;
-	position: fixed;
 	width: 100%;
-	z-index: -1000;
 }
 
 .hero-overlay {
@@ -50,6 +60,24 @@ body {
 	min-height: 100%;
 	width: 100%;
 	position: relative;
+}
+
+.nav-main a {
+	background: rgba(255,255,255,0.1);
+	border: 1px solid #333;
+	border-radius: 5px;
+	color: #fff;
+	display: inline-block;
+	font-family: "Goudy Bookletter 1911", serif;
+	font-size: 1.5em;
+	font-weight: 200;
+	margin: 0 2px;
+	padding: 10px 20px;
+	text-decoration: none;
+}
+
+.nav-main a:hover {
+	background: rgba(255,255,255,0.25);
 }
 
 .scroll-test {
