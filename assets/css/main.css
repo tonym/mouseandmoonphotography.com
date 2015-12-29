@@ -80,19 +80,6 @@ body {
 	background: rgba(255,255,255,0.25);
 }
 
-.scroll-test {
-	background: url(../img/bg.1200.jpg) no-repeat center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	height: 100%;
-	min-height: 100%;
-	position: relative;
-	top: 100%;
-	width: 100%;
-}
-
 .tagline-marquee {
 	font-family: "Dorsa", sans-serif;
 	font-size: 6em;
