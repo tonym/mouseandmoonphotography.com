@@ -25,9 +25,33 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
+            cwd: 'node_modules/bootstrap/dist',
+            src: '**/*',
+            dest: 'dist/assets/lib/bootstrap'
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/jquery/dist',
+            src: '**/*',
+            dest: 'dist/assets/lib/jquery/'
+          },
+          {
+            expand: true,
+            cwd: 'node_modules/mustache',
+            src: '**/*.js',
+            dest: 'dist/assets/lib/mustache/'
+          },
+          {
+            expand: true,
             cwd: 'source/img',
             src: '**/*',
             dest: 'dist/assets/img/'
+          },
+          {
+            expand: true,
+            cwd: 'source/api',
+            src: '**/*',
+            dest: 'dist/assets/api/'
           }
         ]
       }
@@ -56,12 +80,18 @@ module.exports = function(grunt) {
         src: 'src/<%= pkg.name %>.js',
         dest: 'build/<%= pkg.name %>.min.js'
       }
+    },
+
+    watch: {
+      files: ['source/**/*'],
+      tasks: ['copy', 'less']
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
   grunt.registerTask('default', ['copy', 'less']);

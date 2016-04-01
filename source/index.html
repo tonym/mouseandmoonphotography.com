@@ -61,5 +61,49 @@
       </div>
     </div>
 
+    <div id="gallery-element" class="gallery">
+
+    </div>
+
+    <script id="gallery-template" type="x-tmpl-mustache">
+      Hello World!
+    </script>
+
+    <script type="text/javascript" src="/assets/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/lib/mustache/mustache.min.js"></script>
+    <script type="text/javascript" src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      var MouseAndMoon = {
+        galleryElement: '',
+        galleryManifest: {},
+        galleryTemplate: '',
+        API: {
+          gallery: '/assets/api/gallery.php'
+        },
+        onReady: function() {
+          MouseAndMoon.set('galleryTemplate', $('#gallery-template').html())
+            .set('galleryElement', $('#gallery-element'))
+            .getGalleryManifest()
+            .done(MouseAndMoon.renderGallery);
+        },
+        getGalleryManifest: function() {
+          return $.getJSON(MouseAndMoon.API.gallery).then(function(data) {
+            return MouseAndMoon.set('galleryManifest', (data.hasOwnProperty('text') ? data.text : {}));
+          });
+        },
+        renderGallery: function() {
+          var rendered = Mustache.render(MouseAndMoon.galleryTemplate, MouseAndMoon.galleryManifest);
+          MouseAndMoon.galleryElement.html(rendered);
+          rendered = null;
+          return MouseAndMoon;
+        },
+        set: function(prop, value) {
+          MouseAndMoon[prop] = value;
+          return MouseAndMoon;
+        }
+      };
+
+      $(document).ready(MouseAndMoon.onReady);
+    </script>
   </body>
  </html>
