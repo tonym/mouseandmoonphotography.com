@@ -26,6 +26,29 @@
     </head>
   <body>
 
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand brand" href="#">
+            M
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <div class="container-responsive hero">
       <div class="hero-overlay">
         <div class="brand-wrapper">
@@ -37,8 +60,8 @@
             <div class="tagline-secondary">
               <span class="icon-vectorpaint"></span>
             </div>
-            <div class="tagline-primary-big">Elaborate Victorian Tales</div>
-            <div class="tagline-primary-small">of fairies, folklore, myth, and industry</div>
+            <div class="tagline-primary-big">Elaborate Tales</div>
+            <div class="tagline-primary-small">of fairies, folklore, and myth</div>
             <div class="tagline-secondary">told through the wonder of</div>
             <div class="tagline-marquee">photography</div>
           </div>
@@ -48,15 +71,9 @@
             </div>
           </div>
           <div class="nav-main">
-            <a href="http://www.facebook.com">facebook</a>
-            <a href="/">kickstarter</a>
-            <a href="/">etsy</a>
+            <div class="tagline-secondary">by</div>
+            <div class="tagline-primary-small">Tony M, Gwynievere, and the artists of Mouse and Moon</div>
           </div>
-        </div>
-        <div class="direction-indicator">
-          <i class="fa fa-angle-down"></i>
-          see the pictures
-          <i class="fa fa-angle-down"></i>
         </div>
       </div>
     </div>
@@ -66,7 +83,11 @@
     </div>
 
     <script id="gallery-template" type="x-tmpl-mustache">
-      Hello World!
+      <div class="container">
+        {{#gallery}}
+          <img class="gallery-thumb" src="{{thumb}}" alt="{{title}}" hspace="0">
+        {{/gallery}}
+      </div>
     </script>
 
     <script type="text/javascript" src="/assets/lib/jquery/jquery.min.js"></script>
@@ -87,19 +108,22 @@
             .done(MouseAndMoon.renderGallery);
         },
         getGalleryManifest: function() {
-          return $.getJSON(MouseAndMoon.API.gallery).then(function(data) {
-            return MouseAndMoon.set('galleryManifest', (data.hasOwnProperty('text') ? data.text : {}));
+          return $.getJSON(MouseAndMoon.get('API').gallery).then(function(data) {
+            return MouseAndMoon.set('galleryManifest', (data.hasOwnProperty('text') ? data.text : data));
           });
         },
         renderGallery: function() {
-          var rendered = Mustache.render(MouseAndMoon.galleryTemplate, MouseAndMoon.galleryManifest);
-          MouseAndMoon.galleryElement.html(rendered);
+          var rendered = Mustache.render(MouseAndMoon.get('galleryTemplate'), MouseAndMoon.get('galleryManifest'));
+          MouseAndMoon.get('galleryElement').html(rendered);
           rendered = null;
           return MouseAndMoon;
         },
         set: function(prop, value) {
           MouseAndMoon[prop] = value;
           return MouseAndMoon;
+        },
+        get: function(prop) {
+          return MouseAndMoon[prop];
         }
       };
 
