@@ -52,7 +52,7 @@
     <div class="container-responsive hero">
       <div class="hero-overlay">
         <div class="brand-wrapper">
-          <div class="divider-top divider">
+          <div class="divider-top divider hidden-xs">
             <span class="icon-divider-1"></span>
           </div>
           <div class="brand">Mouse and Moon Creations</div>
@@ -85,10 +85,52 @@
     <script id="gallery-template" type="x-tmpl-mustache">
       <div class="container">
         {{#gallery}}
-          <img class="gallery-thumb" src="{{thumb}}" alt="{{title}}" hspace="0">
+          <a href="#" data-toggle="modal" data-target="#gallery-viewer-modal" data-title="{{title}}" data-file="{{file}}" data-caption="{{caption}}" data-product="{{transmissionreference}}">
+            <img class="gallery-thumb" src="{{thumb}}" alt="{{title}}">
+          </a>
         {{/gallery}}
       </div>
     </script>
+
+    <div class="modal fade" id="gallery-viewer-modal" tabindex="-1" role="dialog" aria-labelledby="gallery-viewer-label">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="container-responsive">
+            <div class="row">
+              <div class="col-md-9">
+                <img class="modal-content-image img-responsive">
+              </div>
+              <div class="col-md-3">
+                <div class="container-responsive">
+                  <div class="row">
+                    <div class="col-md-11">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-11">
+                      <h4 class="modal-content-title"></h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-11">
+                      <p class="modal-content-caption"></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-11">
+                      <button type="button" class="buy modal-content-product sr-add btn btn-default" aria-label="Buy">
+                        Buy a print
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script type="text/javascript" src="/assets/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/lib/mustache/mustache.min.js"></script>
@@ -98,17 +140,38 @@
         galleryElement: '',
         galleryManifest: {},
         galleryTemplate: '',
+        currentProduct: null,
         API: {
           gallery: '/assets/api/gallery.php'
         },
         onReady: function() {
-          MouseAndMoon.set('galleryTemplate', $('#gallery-template').html())
-            .set('galleryElement', $('#gallery-element'))
+          MouseAndMoon.set('galleryTemplate', jQuery('#gallery-template').html())
+            .set('galleryElement', jQuery('#gallery-element'))
             .getGalleryManifest()
             .done(MouseAndMoon.renderGallery);
+
+            jQuery('#gallery-viewer-modal').on('show.bs.modal', function (event) {
+              var button = jQuery(event.relatedTarget);
+              var file = button.data('file');
+              var title = button.data('title');
+              var caption = button.data('caption');
+              var product = button.data('product');
+              var modal = jQuery(this);
+              modal.find('.modal-content-image').attr('src', file);
+              modal.find('.modal-content-image').attr('alt', title);
+              modal.find('.modal-content-title').html(title);
+              modal.find('.modal-content-caption').html(caption);
+              MouseAndMoon.set('currentProduct', product);
+            });
+
+            jQuery('.buy').on('click', function(e) {
+              var product = MouseAndMoon.get('currentProduct');
+              console.log(product);
+              MouseAndMoon.addToCart(product);
+            });
         },
         getGalleryManifest: function() {
-          return $.getJSON(MouseAndMoon.get('API').gallery).then(function(data) {
+          return jQuery.getJSON(MouseAndMoon.get('API').gallery).then(function(data) {
             return MouseAndMoon.set('galleryManifest', (data.hasOwnProperty('text') ? data.text : data));
           });
         },
@@ -117,6 +180,9 @@
           MouseAndMoon.get('galleryElement').html(rendered);
           rendered = null;
           return MouseAndMoon;
+        },
+        addToCart: function(product) {
+          sraddtocheckout(product);
         },
         set: function(prop, value) {
           MouseAndMoon[prop] = value;
@@ -127,7 +193,13 @@
         }
       };
 
-      $(document).ready(MouseAndMoon.onReady);
+      jQuery(document).ready(MouseAndMoon.onReady);
     </script>
+
+    <script language="javascript" src="https://space.shoprocket.co/frontend/sr.min.js?cid=8442"></script>
+    <div id="sr-basket-widget" class="">
+      <div class="sr-basket-widget-inner" id="sr-basket-button">Cart <span class="sr-confirm-amount"> (0) </span></div>
+    </div>
+
   </body>
  </html>
