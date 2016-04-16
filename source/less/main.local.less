@@ -45,6 +45,38 @@ body {
 	padding: 20px 0 40px 0;
 }
 
+.gallery-link {
+	position: relative;
+}
+
+.gallery-link:hover .gallery-link-after {
+	display: block;
+}
+
+.gallery-link:hover img {
+	opacity: 0.4;
+}
+
+.gallery-link-after {
+	color: #fff;
+	display: none;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 100%;
+}
+
+.gallery-link-after h2 {
+	margin: 0;
+	padding: 0;
+}
+
+.gallery-link-after h2 i {
+	margin: 0 15px;
+}
+
 .gallery-thumb {
 	margin-right: -4px;
 	width: 25%;

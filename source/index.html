@@ -44,6 +44,9 @@
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="https://www.instagram.com/tony.mouseandmoon/"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="https://www.facebook.com/mouseandmoon/"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://www.tumblr.com/blog/mouseandmoon"><i class="fa fa-tumblr"></i></a></li>
           </ul>
         </div>
       </div>
@@ -78,15 +81,30 @@
       </div>
     </div>
 
-    <div id="gallery-element" class="gallery">
+    <div id="gallery-element" class="gallery"></div>
 
+    <div class="container about">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>About Mouse and Moon Creations</h2>
+          <p>
+            
+          </p>
+        </div>
+      </div>
     </div>
 
     <script id="gallery-template" type="x-tmpl-mustache">
       <div class="container">
         {{#gallery}}
-          <a href="#" data-toggle="modal" data-target="#gallery-viewer-modal" data-title="{{title}}" data-file="{{file}}" data-caption="{{caption}}" data-product="{{transmissionreference}}">
+          <a href="#" class="gallery-link" data-toggle="modal" data-target="#gallery-viewer-modal" data-title="{{title}}" data-file="{{file}}" data-caption="{{caption}}" data-product="{{transmissionreference}}">
             <img class="gallery-thumb" src="{{thumb}}" alt="{{title}}">
+            <div class="gallery-link-after hidden-xs hidden-sm">
+              <h2>
+                <i class="fa fa-search"></i>
+                <i class="fa fa-shopping-cart quick-buy" data-product="{{transmissionreference}}"></i>
+              </h2>
+            </div>
           </a>
         {{/gallery}}
       </div>
@@ -157,16 +175,24 @@
               var caption = button.data('caption');
               var product = button.data('product');
               var modal = jQuery(this);
+              MouseAndMoon.set('currentProduct', product);
               modal.find('.modal-content-image').attr('src', file);
               modal.find('.modal-content-image').attr('alt', title);
               modal.find('.modal-content-title').html(title);
               modal.find('.modal-content-caption').html(caption);
-              MouseAndMoon.set('currentProduct', product);
+              return MouseAndMoon;
             });
 
             jQuery('.buy').on('click', function(e) {
               var product = MouseAndMoon.get('currentProduct');
+              MouseAndMoon.addToCart(product);
+            });
+
+            jQuery('body').on('click', '.quick-buy', function(e) {
+              var product = jQuery(this).data('product');
               console.log(product);
+              e.preventDefault();
+              //e.stopPropagation();
               MouseAndMoon.addToCart(product);
             });
         },
